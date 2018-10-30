@@ -26,7 +26,7 @@ namespace WindowsFormsApplication2
     "铁岭场地"
   ],
   "LastSpotIndex": 0,
-  "IsCreateFolder": true,
+  "IsCreateFolder": true,//取消掉该记录
   "Comment": "buzhis "
 }
     */

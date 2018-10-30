@@ -55,7 +55,8 @@ namespace WindowsFormsApplication2
         {
             _isOK = true;
             Visible = false;
-            Update();         
+            Close();
+                 
         }
 
         private void msCanc_but_Click(object sender, EventArgs e)

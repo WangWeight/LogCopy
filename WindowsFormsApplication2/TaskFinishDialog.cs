@@ -44,33 +44,31 @@ namespace WindowsFormsApplication2
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-            if (checkBox1.Checked)
-            {
-                System.Diagnostics.Process.Start("explorer.exe", _targetFolder);
-                
-            }
-            if (checkBox2.Checked)//删除，暂时不想
-            {
-                try {
-                    File.Delete(_fromFile);
-                }
-                catch(IOException )
-                {
-
-                }
-            }
-            if (checkBox3.Checked)
-            {
-                System.Diagnostics.Process.Start("explorer.exe", _fromFolder);
-            }
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             this.Visible = false;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", _fromFolder);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                File.Delete(_fromFile);
+            }
+            catch (IOException)
+            {
+
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", _targetFolder);
         }
     }
 }

@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Threading;
 using System.IO;
-using System.Data.Common;
-using Newtonsoft.Json;
+using System.Linq;
 using System.Security.Cryptography;
+using System.Threading;
+using System.Windows.Forms;
 namespace WindowsFormsApplication2
 {
     public partial class CopyLog : Form
@@ -169,6 +162,39 @@ namespace WindowsFormsApplication2
             msForm.VisibleChanged += MsForm_VisibleChanged;
             finishForm.VisibleChanged += FinishForm_VisibleChanged;
         }
+        //初始化，包括初始化几个对话框对象，读取配置文件并设置界面值
+        private void init()
+        {
+            msForm = new MakeSureForm();
+            finishForm = new TaskFinishDialog();
+            closeForm = false;
+            _drvs = new HashSet<string>();
+            newTargetDir_input.Text = getDate();
+            _config = new ConfigFile(AppDomain.CurrentDomain.BaseDirectory + "\\config.json");
+            if (_config.isError)
+            {
+                setStatusText("加载配置文件失败");
+                vehicleType_comb.DataSource = _config.getVehicleTypes();
+                spot_cmb.DataSource = _config.getSpots();
+            }
+            else
+            {
+                selectFolder_dia.SelectedPath = _config.getTargetFolder();
+                targetDir.Text = _config.getTargetFolder();
+                //checkBox1.Checked = _config.isCreateFolder();
+                vehicleType_comb.DataSource = _config.getVehicleTypes();
+                if (_config.getVehicleTypes().Count > _config.getLastTypeIndex())
+                    vehicleType_comb.SelectedIndex = _config.getLastTypeIndex();
+                else
+                    vehicleType_comb.SelectedIndex = 0;
+                spot_cmb.DataSource = _config.getSpots();
+                if (_config.getSpots().Count > _config.getLastSpotIndex())
+                    spot_cmb.SelectedIndex = _config.getLastSpotIndex();
+                else
+                    vehicleType_comb.SelectedIndex = 0;
+                //newTargetDir_input.Enabled = _config.isCreateFolder(); 取消掉启动时创建新文件夹
+            }
+        }
 
         private void FinishForm_VisibleChanged(object sender, EventArgs e)
         {
@@ -182,9 +208,10 @@ namespace WindowsFormsApplication2
         {           
             if (!msForm.Visible&&msForm.isOK)// 这里开始复制工作
             {
-                if (checkBox1.Checked&&!Directory.Exists(targetDir.Text + "\\" + newTargetDir_input.Text))//当需要建立文件夹时
+                if (!Directory.Exists(targetDir.Text))//当需要建立文件夹时
                 {
-                    Directory.CreateDirectory(targetDir.Text+"\\"+newTargetDir_input.Text);
+                    Directory.CreateDirectory(targetDir.Text);
+                    setStatusText("目标目录不存在,创建目录 "+ targetDir.Text);
                 }
                 if (File.Exists(msForm.FromFile) && !File.Exists(msForm.TargetFile))
                 {
@@ -202,7 +229,7 @@ namespace WindowsFormsApplication2
                     {
                         MessageBox.Show("复制失败或者校验失败，请手动检查", "出现问题");
                     }
-                } 
+                }
             }
         }
         //获取当前日期字符串，如20180910
@@ -211,40 +238,7 @@ namespace WindowsFormsApplication2
             DateTime dt = DateTime.Now;
             return "" + dt.Year + dt.Month + dt.Day;
         }
-        //初始化，包括初始化几个对话框对象，读取配置文件并设置界面值
-        private void init()
-        {
-            msForm = new MakeSureForm();
-            finishForm = new TaskFinishDialog();
-            closeForm = false;
-            _drvs = new HashSet<string>();
-            newTargetDir_input.Text = getDate();
-            _config=new ConfigFile(AppDomain.CurrentDomain.BaseDirectory+"\\config.json");
-            if (_config.isError)
-            {
-                setStatusText("加载配置文件失败");
-                vehicleType_comb.DataSource = _config.getVehicleTypes();
-                spot_cmb.DataSource = _config.getSpots();
-            }
-            else
-            {
-                selectFolder_dia.SelectedPath = _config.getTargetFolder();
-                targetDir.Text = _config.getTargetFolder();
-                checkBox1.Checked = _config.isCreateFolder();
-                vehicleType_comb.DataSource = _config.getVehicleTypes();
-                if (_config.getVehicleTypes().Count > _config.getLastTypeIndex())
-                    vehicleType_comb.SelectedIndex = _config.getLastTypeIndex();
-                else
-                    vehicleType_comb.SelectedIndex = 0;
-               spot_cmb.DataSource = _config.getSpots();
-                if (_config.getSpots().Count > _config.getLastSpotIndex())
-                    spot_cmb.SelectedIndex = _config.getLastSpotIndex();
-                else
-                    vehicleType_comb.SelectedIndex = 0;
-               newTargetDir_input.Enabled = _config.isCreateFolder();
-            }
-        }
-
+       
         private void button1_Click(object sender, EventArgs e)
         {
             DialogResult dr = selectFile_dia.ShowDialog();
@@ -342,7 +336,7 @@ namespace WindowsFormsApplication2
         private string _getFinalTargetName()
         {
             return vehicleType_comb.Text //飞机类型
-                + "-" +flyTime_num.Value//飞行架次
+                + "-" +string.Format("{0:D2}",(int)flyTime_num.Value)//飞行架次
                 + "-" + getDate()//日期
                 + "-" + "02" //这个我不知道
                 + "-" + spot_cmb.Text//测试场地
@@ -350,6 +344,11 @@ namespace WindowsFormsApplication2
                 + ".bin";
         }
         //复制按钮点击后
+        /// <summary>
+        /// 1)不允许在软件中覆盖目标文件，只能作为提示功能。如果想删除，请手动。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
             if (targetDir.Text.EndsWith("\\"))
