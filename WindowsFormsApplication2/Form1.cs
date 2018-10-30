@@ -352,6 +352,10 @@ namespace WindowsFormsApplication2
         //复制按钮点击后
         private void button2_Click(object sender, EventArgs e)
         {
+            if (targetDir.Text.EndsWith("\\"))
+            {
+                targetDir.Text = targetDir.Text.TrimEnd(new char[] { '\\' });
+            }
             var tf= targetDir.Text + "\\" + _getFinalTargetName();
             if (fromFile_comb.Text==""|| targetDir.Text == "")
             {

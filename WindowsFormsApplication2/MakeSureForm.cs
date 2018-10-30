@@ -29,7 +29,7 @@ namespace WindowsFormsApplication2
             set
             {
                 _fromFile = value;
-                label3.Text = _fromFile;
+                textBox1.Text = _fromFile;
             }
         }
         string _fromFile;
@@ -42,7 +42,7 @@ namespace WindowsFormsApplication2
             set
             {
                 _targetFile = value;
-                label5.Text = _targetFile;
+                textBox2.Text = _targetFile;
             }
         }
         string _targetFile;
@@ -61,8 +61,7 @@ namespace WindowsFormsApplication2
         private void msCanc_but_Click(object sender, EventArgs e)
         {
             _isOK = false;
-            Visible = false;
-            
+            Visible = false;           
         }
     }
 }
