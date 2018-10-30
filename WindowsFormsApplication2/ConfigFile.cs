@@ -25,6 +25,8 @@ namespace WindowsFormsApplication2
     "法库场地",
     "铁岭场地"
   ],
+  "VehicleNo":[],
+  "FlyItem":"",
   "LastSpotIndex": 0,
   "IsCreateFolder": true,//取消掉该记录
   "Comment": "buzhis "
@@ -38,12 +40,15 @@ namespace WindowsFormsApplication2
         public int LastTypeIndex;//选择类型的序号
         public List<string> Spot;//地点
         public int LastSpotIndex;//地点序号
+        public string FlyItem;//飞行科目
+        public List<string> VehicleNo;//飞机编号
         public bool IsCreateFolder;//是否新建文件夹
         public string Comment;//备注？这里还不确定是否使用list来存储多个备注
         public JsonObject()
         {
             VehicleType = new List<string>();
             Spot = new List<string>();
+            VehicleNo = new List<string>();
         }
     }
     class ConfigFile
@@ -92,6 +97,7 @@ namespace WindowsFormsApplication2
                         _jo = jo;
                         removeEmptyItem(_jo.Spot);
                         removeEmptyItem(_jo.VehicleType);
+                        removeEmptyItem(_jo.VehicleNo);
                         _isError = false;
                     }
                     else
@@ -148,6 +154,14 @@ namespace WindowsFormsApplication2
         {
             _jo.IsCreateFolder=isC;
         }
+        public List<string> getVehicleNo()
+        {
+            return _jo.VehicleNo;
+        }
+        public void setVehicleNo(List<string> vn)
+        {
+            _jo.VehicleNo = vn;
+        }
         public String getComment()
         {
             return _jo.Comment;
@@ -164,6 +178,14 @@ namespace WindowsFormsApplication2
         public void setSpots(List<string> spots)
         {
             _jo.Spot = spots;
+        }
+        public void setFlyItem(string item)
+        {
+            _jo.FlyItem = item;
+        }
+        public string getFlyItem()
+        {
+            return _jo.FlyItem;
         }
         public int getLastSpotIndex()
         {

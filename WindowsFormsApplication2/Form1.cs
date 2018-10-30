@@ -181,6 +181,7 @@ namespace WindowsFormsApplication2
             {
                 selectFolder_dia.SelectedPath = _config.getTargetFolder();
                 targetDir.Text = _config.getTargetFolder();
+                fly_item_txt.Text = _config.getFlyItem();
                 //checkBox1.Checked = _config.isCreateFolder();
                 vehicleType_comb.DataSource = _config.getVehicleTypes();
                 if (_config.getVehicleTypes().Count > _config.getLastTypeIndex())
@@ -192,6 +193,9 @@ namespace WindowsFormsApplication2
                     spot_cmb.SelectedIndex = _config.getLastSpotIndex();
                 else
                     vehicleType_comb.SelectedIndex = 0;
+
+                vehicle_no_comb.DataSource = _config.getVehicleNo();
+                
                 //newTargetDir_input.Enabled = _config.isCreateFolder(); 取消掉启动时创建新文件夹
             }
         }
@@ -327,6 +331,7 @@ namespace WindowsFormsApplication2
             _config.setTargetFolder(targetDir.Text);
             _config.setLastSpotIndex(spot_cmb.SelectedIndex);
             _config.setLastVehicleTypeIndex(vehicleType_comb.SelectedIndex);
+            _config.setFlyItem(fly_item_txt.Text);
             string ff = fromFile_comb.Text;
             if(ff.LastIndexOf("\\")>0)
                 _config.setFromFolder(ff.Substring(0, ff.LastIndexOf("\\")));
@@ -336,10 +341,11 @@ namespace WindowsFormsApplication2
         private string _getFinalTargetName()
         {
             return vehicleType_comb.Text //飞机类型
-                + "-" +string.Format("{0:D2}",(int)flyTime_num.Value)//飞行架次
-                + "-" + getDate()//日期
-                + "-" + "02" //这个我不知道
+                + "-" + vehicle_no_comb.Text //飞机编号
+                + "-" + getDate()//日期               
+                + "-" + string.Format("{0:D2}", (int)flyTime_num.Value)//飞行架次
                 + "-" + spot_cmb.Text//测试场地
+                + "-" + fly_item_txt.Text//
                 + "-" + comment_txt.Text 
                 + ".bin";
         }
@@ -379,6 +385,12 @@ namespace WindowsFormsApplication2
                 {
                     _config.getVehicleTypes().Add(vehicleType_comb.Text);
                     vehicleType_comb.DataSource = _config.getVehicleTypes();
+                }
+
+                if (!(vehicle_no_comb.DataSource as List<string>).Contains(vehicle_no_comb.Text))
+                {
+                    _config.getVehicleNo().Add(vehicle_no_comb.Text);
+                    vehicle_no_comb.DataSource = _config.getVehicleNo();
                 }
                 saveConfig();
                 msForm.FromFile = fromFile_comb.Text;
