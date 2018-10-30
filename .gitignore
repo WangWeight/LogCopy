@@ -1,3 +1,6 @@
 WindowsFormsApplication2/bin/
 WindowsFormsApplication2/obj/
 .vs/
+WindowsFormsApplication2/publsh/
+*.user
+*.pfx

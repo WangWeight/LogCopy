@@ -309,6 +309,7 @@
             this.Activated += new System.EventHandler(this.CopyLog_Activated);
             this.Deactivate += new System.EventHandler(this.CopyLog_Deactivate);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CopyLog_FormClosing);
+            this.SizeChanged += new System.EventHandler(this.CopyLog_SizeChanged);
             this.VisibleChanged += new System.EventHandler(this.CopyLog_VisibleChanged);
             this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);

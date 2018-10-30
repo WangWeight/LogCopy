@@ -448,16 +448,16 @@ namespace WindowsFormsApplication2
             {
                 about.Add("1)可通过编辑config.json文件来更改一些默认的设置");
                 about.Add("可通过编辑config文件来更改一些默认的设置等");
-                about.Add("可通过编辑config文件来更改一些默认的设置等");
-                about.Add("可通过编辑config文件来更改一些默认的设置等");
-                about.Add("可通过编辑config文件来更改一些默认的设置等");
-                about.Add("可通过编辑config文件来更改一些默认的设置等");
-                about.Add("可通过编辑config文件来更改一些默认的设置等");
-                about.Add("可通过编辑config文件来更改一些默认的设置等");
-                about.Add("可通过编辑config文件来更改一些默认的设置等");
-                about.Add("可通过编辑config文件来更改一些默认的设置等");
             }
             MessageBox.Show(string.Join("\r\n", about), "关于");
+        }
+        //窗口状态变化事件，暂时没什么用
+        private void CopyLog_SizeChanged(object sender, EventArgs e)
+        {
+            //if (this.WindowState == FormWindowState.Minimized)
+            //{
+            //    notifyIcon1.ShowBalloonTip(800, "这里恢复状态", "可以双击这里或者右键选择功能", ToolTipIcon.Info);
+            //}
         }
     }
     
