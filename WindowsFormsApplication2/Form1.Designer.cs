@@ -202,6 +202,7 @@
             this.checkBox1.Text = "创建文件夹";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBox1.Click += new System.EventHandler(this.checkBox1_Click);
             // 
             // button2
             // 
@@ -278,6 +279,7 @@
             this.newTargetDir_input.Name = "newTargetDir_input";
             this.newTargetDir_input.Size = new System.Drawing.Size(217, 25);
             this.newTargetDir_input.TabIndex = 8;
+            this.newTargetDir_input.TextChanged += new System.EventHandler(this.newTargetDir_input_TextChanged);
             // 
             // label4
             // 

@@ -19,6 +19,8 @@ namespace WindowsFormsApplication2
         private bool _isStatusNeedFlash=false;
         ConfigFile _config;
         HashSet<string> _drvs;
+        private string _originTargetDir;//存放原目标字符串，用于为newTarget输入时及时更新targetDir内容
+        private bool _isCheckChangedByUser = false;
         class StatusBarObject
         {
             public int time = 0;
@@ -257,33 +259,13 @@ namespace WindowsFormsApplication2
             DialogResult dr = selectFolder_dia.ShowDialog();
             if (dr == DialogResult.OK)
             {
-                targetDir.Text = selectFolder_dia.SelectedPath;
-                Console.WriteLine(selectFolder_dia.SelectedPath);
-                
+                 targetDir.Text = selectFolder_dia.SelectedPath;
             }
         }
         //建立新的文件夹
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             newTargetDir_input.Enabled = checkBox1.Checked;
-            if (targetDir.Text != "")
-            {
-                if (checkBox1.Checked)
-                {
-                    targetDir.Text = targetDir.Text.TrimEnd(new char[] { '\\'}) + "\\" + newTargetDir_input.Text;
-                }
-                else
-                {
-                    string ttext = targetDir.Text,ntext= newTargetDir_input.Text;
-                    if (ttext.EndsWith(ntext))
-                    {
-                        var path= ttext.Substring(0, ttext.Length - ntext.Length - 1);//减去路径的斜杠一个字符
-                        if (path.EndsWith(":"))//如果zhi
-                            path += "\\";
-                        targetDir.Text = path;
-                    }
-                }
-            }
         }
 
         private void CopyLog_Deactivate(object sender, EventArgs e)
@@ -415,30 +397,28 @@ namespace WindowsFormsApplication2
             }
             return rlt;
         }
-
+        //当用户更改目录时（通过目录选择，粘贴，输入等），促使新建目录取消选择
         private void targetDir_TextChanged(object sender, EventArgs e)
-        {
-            if (targetDir.Text == "")
-                return;
-            if (Directory.Exists(targetDir.Text))
+        {        
+            if(!_isCheckChangedByUser)//不是通过checkbox更新的目标目录
             {
-                selectFolder_dia.SelectedPath = targetDir.Text;
-                /*
-                if (checkBox1.Checked)
+                _originTargetDir = targetDir.Text;
+                if (targetDir.Text == "")
+                    return;
+                if (Directory.Exists(targetDir.Text))
                 {
-                    string ttt = targetDir.Text;
-                    if (ttt.EndsWith("\\"))
-                    {
-                        ttt.TrimEnd(new char[] { '\\'});
-                    }
-                    targetDir.Text = ttt + "\\" + newTargetDir_input.Text;
-                } 
-                */              
+                    selectFolder_dia.SelectedPath = targetDir.Text;
+                }
+                else
+                {
+                    setStatusText("不存在目录:" + targetDir.Text + "，请更换其他目录");
+                }
+                if (checkBox1.Checked  )
+                {
+                    checkBox1.Checked = false;                   
+                }                
             }
-            else
-            {                
-                setStatusText("不存在目录:" + targetDir.Text+"，请更换其他目录");
-            }
+            _isCheckChangedByUser = !_isCheckChangedByUser;
         }
         //设置状态栏显示文字内容，包括设置状态栏的显示，格式
         private void setStatusText(string text)
@@ -451,7 +431,7 @@ namespace WindowsFormsApplication2
         private void aboutApplication_Click(object sender, EventArgs e)
         {
             List<string> about = new List<string>();
-            about.Add("2018-10-30");
+            about.Add("2018-10-30  ver 1.0.3");
             if (File.Exists("about.me"))
             {
                 about.AddRange(File.ReadAllLines("about.me").ToList());
@@ -459,7 +439,7 @@ namespace WindowsFormsApplication2
             else
             {
                 about.Add("1)可通过编辑config.json文件来更改一些默认的设置");
-                about.Add("可通过编辑config文件来更改一些默认的设置等");
+                about.Add("2)要注意状态栏中提示信息");
             }
             MessageBox.Show(string.Join("\r\n", about), "关于");
         }
@@ -471,6 +451,38 @@ namespace WindowsFormsApplication2
             //    notifyIcon1.ShowBalloonTip(800, "这里恢复状态", "可以双击这里或者右键选择功能", ToolTipIcon.Info);
             //}
         }
-    }
-    
+        //当创建文件夹更改时，通过_originTargetDir与该内容拼接成为新的目标目录
+        private void newTargetDir_input_TextChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                _isCheckChangedByUser = true;
+                targetDir.Text = _originTargetDir.TrimEnd(new char[] { '\\' }) + "\\" + newTargetDir_input.Text;
+            }
+        }
+        //只有用户点击才操作
+        private void checkBox1_Click(object sender, EventArgs e)
+        {
+            _isCheckChangedByUser = true;
+            if (targetDir.Text != "")
+            {
+                if (checkBox1.Checked)
+                {                   
+                    targetDir.Text = targetDir.Text.TrimEnd(new char[] { '\\' }) + "\\" + newTargetDir_input.Text;
+                }
+                else
+                {
+                    string ttext = targetDir.Text, ntext = newTargetDir_input.Text;
+                    if (ttext.EndsWith(ntext))
+                    {
+                        var path = ttext.Substring(0, ttext.Length - ntext.Length - 1);//减去路径的斜杠一个字符
+                        if (path.EndsWith(":"))//如果zhi
+                            path += "\\";
+                        targetDir.Text = path;
+                    }
+                }
+                selectFolder_dia.SelectedPath = targetDir.Text;
+            }
+        }
+    } 
 }
