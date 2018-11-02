@@ -60,6 +60,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.命名规则细则ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.flyTime_num)).BeginInit();
@@ -84,22 +87,23 @@
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.closeApplication,
-            this.aboutApplication});
+            this.命名规则细则ToolStripMenuItem,
+            this.aboutApplication,
+            this.closeApplication});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(109, 52);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(169, 76);
             // 
             // closeApplication
             // 
             this.closeApplication.Name = "closeApplication";
-            this.closeApplication.Size = new System.Drawing.Size(108, 24);
+            this.closeApplication.Size = new System.Drawing.Size(175, 24);
             this.closeApplication.Text = "退出";
             this.closeApplication.Click += new System.EventHandler(this.closeApplication_Click);
             // 
             // aboutApplication
             // 
             this.aboutApplication.Name = "aboutApplication";
-            this.aboutApplication.Size = new System.Drawing.Size(108, 24);
+            this.aboutApplication.Size = new System.Drawing.Size(175, 24);
             this.aboutApplication.Text = "关于";
             this.aboutApplication.Click += new System.EventHandler(this.aboutApplication_Click);
             // 
@@ -152,6 +156,7 @@
             this.label8.Size = new System.Drawing.Size(84, 19);
             this.label8.TabIndex = 36;
             this.label8.Text = "飞行器编号";
+            this.toolTip1.SetToolTip(this.label8, "电动01，油动02");
             // 
             // fly_item_txt
             // 
@@ -270,6 +275,7 @@
             this.label5.Size = new System.Drawing.Size(69, 19);
             this.label5.TabIndex = 25;
             this.label5.Text = "目标目录";
+            this.toolTip1.SetToolTip(this.label5, "保存文件目录");
             // 
             // newTargetDir_input
             // 
@@ -351,11 +357,12 @@
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 388);
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 385);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(843, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(843, 25);
             this.statusStrip1.TabIndex = 17;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -365,6 +372,24 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(823, 17);
             this.toolStripStatusLabel1.Spring = true;
             this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTip1.ToolTipTitle = "提示信息";
+            // 
+            // 命名规则细则ToolStripMenuItem
+            // 
+            this.命名规则细则ToolStripMenuItem.Name = "命名规则细则ToolStripMenuItem";
+            this.命名规则细则ToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.命名规则细则ToolStripMenuItem.Text = "命名规则细则";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(62, 20);
+            this.toolStripStatusLabel2.Text = "version";
+            this.toolStripStatusLabel2.Click += new System.EventHandler(this.toolStripStatusLabel2_Click);
             // 
             // CopyLog
             // 
@@ -385,6 +410,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CopyLog_FormClosing);
             this.SizeChanged += new System.EventHandler(this.CopyLog_SizeChanged);
             this.VisibleChanged += new System.EventHandler(this.CopyLog_VisibleChanged);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CopyLog_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CopyLog_KeyUp);
             this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -428,6 +455,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox vehicle_no_comb;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolStripMenuItem 命名规则细则ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
     }
 }
 

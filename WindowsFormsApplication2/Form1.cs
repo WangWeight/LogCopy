@@ -9,6 +9,7 @@ namespace WindowsFormsApplication2
 {
     public partial class CopyLog : Form
     {
+        string Version = "ver 1.0.4";
         MakeSureForm msForm;
         TaskFinishDialog finishForm;
         Thread watchDevicesChangesThread;//监视磁盘的线程
@@ -19,11 +20,12 @@ namespace WindowsFormsApplication2
         private bool _isStatusNeedFlash=false;
         ConfigFile _config;
         HashSet<string> _drvs;
+        bool _isControlPressing = false;//当ctrl键按下时点击关闭是真正退出程序
         private string _originTargetDir;//存放原目标字符串，用于为newTarget输入时及时更新targetDir内容
         private bool _isCheckChangedByUser = false;
         class StatusBarObject
         {
-            public int time = 0;
+            public int time = 0;//time=0：清空状态栏
         }
         delegate void UpdateFileList(object value);
         delegate void UpdateStatusBar(object obj);
@@ -65,10 +67,10 @@ namespace WindowsFormsApplication2
                 }
                 else if (obj.time < 5)
                 {
-                    toolStripStatusLabel1.Visible = (obj.time % 2 == 1) ? true : false;
+                    toolStripStatusLabel1.Text = (obj.time % 2 == 1) ? _statusBarTmpText : "";
                 }
                 else {
-                    toolStripStatusLabel1.Visible = true;
+                    toolStripStatusLabel1.Text= _statusBarTmpText;
                 }
             }
         }
@@ -167,6 +169,7 @@ namespace WindowsFormsApplication2
         //初始化，包括初始化几个对话框对象，读取配置文件并设置界面值
         private void init()
         {
+            toolStripStatusLabel2.Text = Version;
             msForm = new MakeSureForm();
             finishForm = new TaskFinishDialog();
             closeForm = false;
@@ -197,7 +200,7 @@ namespace WindowsFormsApplication2
                     vehicleType_comb.SelectedIndex = 0;
 
                 vehicle_no_comb.DataSource = _config.getVehicleNo();
-                
+                comment_txt.Text = _config.getComment();
                 //newTargetDir_input.Enabled = _config.isCreateFolder(); 取消掉启动时创建新文件夹
             }
         }
@@ -242,7 +245,7 @@ namespace WindowsFormsApplication2
         private string getDate()
         {
             DateTime dt = DateTime.Now;
-            return "" + dt.Year + dt.Month + dt.Day;
+            return string.Format("{0:yyyyMMdd}", dt);
         }
        
         private void button1_Click(object sender, EventArgs e)
@@ -285,10 +288,17 @@ namespace WindowsFormsApplication2
         //窗口关闭按钮点击后，不可见该窗口
         private void CopyLog_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = true;
-            Visible = false;
-            if(!closeForm)
-                notifyIcon1.ShowBalloonTip(1000, "logCopy隐藏在这里", "继续监听磁盘驱动器变化", ToolTipIcon.Info);
+            if (_isControlPressing)
+            {
+                closeApplication_Click(null, null);
+            }
+            else
+            {
+                e.Cancel = true;
+                Visible = false;
+                if (!closeForm)
+                    notifyIcon1.ShowBalloonTip(1000, "logCopy隐藏在这里", "继续监听磁盘驱动器变化", ToolTipIcon.Info);
+            }
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -421,17 +431,19 @@ namespace WindowsFormsApplication2
             _isCheckChangedByUser = !_isCheckChangedByUser;
         }
         //设置状态栏显示文字内容，包括设置状态栏的显示，格式
+        string _statusBarTmpText = "";
         private void setStatusText(string text)
         {
-            DateTime dt = DateTime.Now;           
-            toolStripStatusLabel1.Text=dt.ToString("[MM-dd hh:mm:ss]   ") + text;
+            DateTime dt = DateTime.Now;
+            _statusBarTmpText = dt.ToString("[MM-dd hh:mm:ss]   ") + text;
+            toolStripStatusLabel1.Text=_statusBarTmpText;
             _isStatusNeedFlash = true;
         }
         //关于
         private void aboutApplication_Click(object sender, EventArgs e)
         {
             List<string> about = new List<string>();
-            about.Add("2018-10-30  ver 1.0.3");
+            about.Add("2018-11-02 "+Version);
             if (File.Exists("about.me"))
             {
                 about.AddRange(File.ReadAllLines("about.me").ToList());
@@ -483,6 +495,29 @@ namespace WindowsFormsApplication2
                 }
                 selectFolder_dia.SelectedPath = targetDir.Text;
             }
+        }
+
+        private void CopyLog_KeyDown(object sender, KeyEventArgs e)
+        {
+            Console.WriteLine(e.Control);
+            if(e.Control)
+             _isControlPressing = true;
+        }
+
+        private void CopyLog_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Control)
+                _isControlPressing = false;
+        }
+        //版本号点击时弹出更新信息
+        private void toolStripStatusLabel2_Click(object sender, EventArgs e)
+        {
+            List<string> msg = new List<string>();
+            msg.Add("1)修复getDate中日月可能一位数字问题");
+            msg.Add("2)增加版本号码显示以及更新内容提示");
+            msg.Add("3)将状态栏信息从隐藏显示动画更换为空字符串和字符串显示");
+            msg.Add("4)修复新打开软件时不填充备注信息的问题");
+            MessageBox.Show(string.Join("\n",msg), "关于" + Version);
         }
     } 
 }
