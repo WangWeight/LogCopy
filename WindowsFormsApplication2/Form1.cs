@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LogCoooooooopy;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace WindowsFormsApplication2
 {
     public partial class CopyLog : Form
     {
-        string Version = "ver 1.0.4";
+        AboutMe _about=new AboutMe();
         MakeSureForm msForm;
         TaskFinishDialog finishForm;
         Thread watchDevicesChangesThread;//监视磁盘的线程
@@ -169,7 +170,7 @@ namespace WindowsFormsApplication2
         //初始化，包括初始化几个对话框对象，读取配置文件并设置界面值
         private void init()
         {
-            toolStripStatusLabel2.Text = Version;
+            toolStripStatusLabel2.Text = _about.Version;
             msForm = new MakeSureForm();
             finishForm = new TaskFinishDialog();
             closeForm = false;
@@ -365,29 +366,38 @@ namespace WindowsFormsApplication2
             {
                 setStatusText("目标文件已存在: " + tf);
             }
-            else
-            {
-                if (!(spot_cmb.DataSource as List<string>).Contains(spot_cmb.Text))
+            else{
+                try
                 {
-                    _config.getSpots().Add(spot_cmb.Text);
-                    spot_cmb.DataSource = null;
-                    spot_cmb.DataSource = _config.getSpots();
-                }
-                if (!(vehicleType_comb.DataSource as List<string>).Contains(vehicleType_comb.Text))
-                {
-                    _config.getVehicleTypes().Add(vehicleType_comb.Text);
-                    vehicleType_comb.DataSource = _config.getVehicleTypes();
-                }
+                    File.Create(tf);
+                    File.Delete(tf);
+                    if (!(spot_cmb.DataSource as List<string>).Contains(spot_cmb.Text))
+                    {
+                        _config.getSpots().Add(spot_cmb.Text);
+                        spot_cmb.DataSource = null;
+                        spot_cmb.DataSource = _config.getSpots();
+                    }
+                    if (!(vehicleType_comb.DataSource as List<string>).Contains(vehicleType_comb.Text))
+                    {
+                        _config.getVehicleTypes().Add(vehicleType_comb.Text);
+                        vehicleType_comb.DataSource = _config.getVehicleTypes();
+                    }
 
-                if (!(vehicle_no_comb.DataSource as List<string>).Contains(vehicle_no_comb.Text))
-                {
-                    _config.getVehicleNo().Add(vehicle_no_comb.Text);
-                    vehicle_no_comb.DataSource = _config.getVehicleNo();
+                    if (!(vehicle_no_comb.DataSource as List<string>).Contains(vehicle_no_comb.Text))
+                    {
+                        _config.getVehicleNo().Add(vehicle_no_comb.Text);
+                        vehicle_no_comb.DataSource = _config.getVehicleNo();
+                    }
+                    saveConfig();
+                    msForm.FromFile = fromFile_comb.Text;
+                    msForm.TargetFile = tf;
+                    msForm.ShowDialog();
+
                 }
-                saveConfig();
-                msForm.FromFile = fromFile_comb.Text;
-                msForm.TargetFile = tf;
-                msForm.ShowDialog();
+                catch (IOException)
+                {
+                    setStatusText("目标文件存在问题");
+                }
             }           
         }       
         //计算两个byte数组的md5值并比较其是否相同，用于校验复制的两个文件是否一致
@@ -421,7 +431,7 @@ namespace WindowsFormsApplication2
                 }
                 else
                 {
-                    setStatusText("不存在目录:" + targetDir.Text + "，请更换其他目录");
+                    setStatusText("注意：不存在目录:" + targetDir.Text + "，选中后将自动新建。");
                 }
                 if (checkBox1.Checked  )
                 {
@@ -442,18 +452,7 @@ namespace WindowsFormsApplication2
         //关于
         private void aboutApplication_Click(object sender, EventArgs e)
         {
-            List<string> about = new List<string>();
-            about.Add("2018-11-02 "+Version);
-            if (File.Exists("about.me"))
-            {
-                about.AddRange(File.ReadAllLines("about.me").ToList());
-            }
-            else
-            {
-                about.Add("1)可通过编辑config.json文件来更改一些默认的设置");
-                about.Add("2)要注意状态栏中提示信息");
-            }
-            MessageBox.Show(string.Join("\r\n", about), "关于");
+            MessageBox.Show(_about.message(),"关于"+_about.Version);
         }
         //窗口状态变化事件，暂时没什么用
         private void CopyLog_SizeChanged(object sender, EventArgs e)
@@ -512,12 +511,7 @@ namespace WindowsFormsApplication2
         //版本号点击时弹出更新信息
         private void toolStripStatusLabel2_Click(object sender, EventArgs e)
         {
-            List<string> msg = new List<string>();
-            msg.Add("1)修复getDate中日月可能一位数字问题");
-            msg.Add("2)增加版本号码显示以及更新内容提示");
-            msg.Add("3)将状态栏信息从隐藏显示动画更换为空字符串和字符串显示");
-            msg.Add("4)修复新打开软件时不填充备注信息的问题");
-            MessageBox.Show(string.Join("\n",msg), "关于" + Version);
+            MessageBox.Show(_about.message(),_about.Version);
         }
     } 
 }
