@@ -138,27 +138,26 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(948, 492);
+            this.groupBox1.Size = new System.Drawing.Size(632, 328);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // vehicle_no_comb
             // 
             this.vehicle_no_comb.FormattingEnabled = true;
-            this.vehicle_no_comb.Location = new System.Drawing.Point(276, 70);
-            this.vehicle_no_comb.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.vehicle_no_comb.Location = new System.Drawing.Point(184, 47);
+            this.vehicle_no_comb.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.vehicle_no_comb.Name = "vehicle_no_comb";
-            this.vehicle_no_comb.Size = new System.Drawing.Size(554, 26);
+            this.vehicle_no_comb.Size = new System.Drawing.Size(371, 20);
             this.vehicle_no_comb.TabIndex = 1;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label8.Location = new System.Drawing.Point(141, 76);
+            this.label8.Location = new System.Drawing.Point(94, 51);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(68, 17);
             this.label8.TabIndex = 36;
@@ -167,17 +166,18 @@
             // 
             // fly_item_txt
             // 
-            this.fly_item_txt.Location = new System.Drawing.Point(276, 253);
-            this.fly_item_txt.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.fly_item_txt.Location = new System.Drawing.Point(184, 169);
+            this.fly_item_txt.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.fly_item_txt.Name = "fly_item_txt";
-            this.fly_item_txt.Size = new System.Drawing.Size(554, 28);
+            this.fly_item_txt.Size = new System.Drawing.Size(371, 21);
             this.fly_item_txt.TabIndex = 5;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.Location = new System.Drawing.Point(141, 254);
+            this.label7.Location = new System.Drawing.Point(94, 169);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(56, 17);
             this.label7.TabIndex = 34;
@@ -186,18 +186,16 @@
             // spot_cmb
             // 
             this.spot_cmb.FormattingEnabled = true;
-            this.spot_cmb.Location = new System.Drawing.Point(276, 204);
-            this.spot_cmb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.spot_cmb.Location = new System.Drawing.Point(184, 136);
             this.spot_cmb.Name = "spot_cmb";
-            this.spot_cmb.Size = new System.Drawing.Size(554, 26);
+            this.spot_cmb.Size = new System.Drawing.Size(371, 20);
             this.spot_cmb.TabIndex = 4;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label6.Location = new System.Drawing.Point(142, 209);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(95, 139);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(32, 17);
             this.label6.TabIndex = 33;
@@ -207,8 +205,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.checkBox1.Location = new System.Drawing.Point(147, 348);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.checkBox1.Location = new System.Drawing.Point(98, 232);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(87, 21);
             this.checkBox1.TabIndex = 7;
@@ -219,10 +216,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(138, 420);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button2.Location = new System.Drawing.Point(92, 280);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(737, 35);
+            this.button2.Size = new System.Drawing.Size(491, 23);
             this.button2.TabIndex = 8;
             this.button2.Text = "复制";
             this.button2.UseVisualStyleBackColor = true;
@@ -230,35 +226,36 @@
             // 
             // comment_txt
             // 
-            this.comment_txt.Location = new System.Drawing.Point(276, 299);
-            this.comment_txt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comment_txt.Location = new System.Drawing.Point(184, 199);
             this.comment_txt.Name = "comment_txt";
-            this.comment_txt.Size = new System.Drawing.Size(554, 28);
+            this.comment_txt.Size = new System.Drawing.Size(371, 21);
             this.comment_txt.TabIndex = 6;
             // 
             // flyTime_num
             // 
-            this.flyTime_num.Location = new System.Drawing.Point(276, 155);
-            this.flyTime_num.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.flyTime_num.Location = new System.Drawing.Point(184, 103);
             this.flyTime_num.Name = "flyTime_num";
-            this.flyTime_num.Size = new System.Drawing.Size(156, 28);
+            this.flyTime_num.Size = new System.Drawing.Size(104, 21);
             this.flyTime_num.TabIndex = 3;
+            this.flyTime_num.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // vehicleType_comb
             // 
             this.vehicleType_comb.FormattingEnabled = true;
-            this.vehicleType_comb.Location = new System.Drawing.Point(276, 112);
-            this.vehicleType_comb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.vehicleType_comb.Location = new System.Drawing.Point(184, 75);
             this.vehicleType_comb.Name = "vehicleType_comb";
-            this.vehicleType_comb.Size = new System.Drawing.Size(554, 26);
+            this.vehicleType_comb.Size = new System.Drawing.Size(371, 20);
             this.vehicleType_comb.TabIndex = 2;
             // 
             // targetDirSelect_btn
             // 
-            this.targetDirSelect_btn.Location = new System.Drawing.Point(842, 385);
-            this.targetDirSelect_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.targetDirSelect_btn.Location = new System.Drawing.Point(561, 257);
             this.targetDirSelect_btn.Name = "targetDirSelect_btn";
-            this.targetDirSelect_btn.Size = new System.Drawing.Size(33, 34);
+            this.targetDirSelect_btn.Size = new System.Drawing.Size(22, 23);
             this.targetDirSelect_btn.TabIndex = 7;
             this.targetDirSelect_btn.Text = "button2";
             this.targetDirSelect_btn.UseVisualStyleBackColor = true;
@@ -266,10 +263,9 @@
             // 
             // targetDir
             // 
-            this.targetDir.Location = new System.Drawing.Point(276, 385);
-            this.targetDir.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.targetDir.Location = new System.Drawing.Point(184, 257);
             this.targetDir.Name = "targetDir";
-            this.targetDir.Size = new System.Drawing.Size(554, 28);
+            this.targetDir.Size = new System.Drawing.Size(371, 21);
             this.targetDir.TabIndex = 9;
             this.targetDir.TextChanged += new System.EventHandler(this.targetDir_TextChanged);
             // 
@@ -277,8 +273,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.Location = new System.Drawing.Point(142, 389);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(95, 259);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 17);
             this.label5.TabIndex = 25;
@@ -288,10 +283,9 @@
             // newTargetDir_input
             // 
             this.newTargetDir_input.Enabled = false;
-            this.newTargetDir_input.Location = new System.Drawing.Point(276, 343);
-            this.newTargetDir_input.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.newTargetDir_input.Location = new System.Drawing.Point(184, 229);
             this.newTargetDir_input.Name = "newTargetDir_input";
-            this.newTargetDir_input.Size = new System.Drawing.Size(244, 28);
+            this.newTargetDir_input.Size = new System.Drawing.Size(164, 21);
             this.newTargetDir_input.TabIndex = 8;
             this.newTargetDir_input.TextChanged += new System.EventHandler(this.newTargetDir_input_TextChanged);
             // 
@@ -299,8 +293,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(144, 305);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(96, 203);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 17);
             this.label4.TabIndex = 22;
@@ -310,8 +303,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(142, 160);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(95, 107);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(32, 17);
             this.label3.TabIndex = 21;
@@ -321,8 +313,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(142, 115);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(95, 77);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 17);
             this.label2.TabIndex = 20;
@@ -330,10 +321,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(842, 23);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button1.Location = new System.Drawing.Point(561, 15);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(33, 34);
+            this.button1.Size = new System.Drawing.Size(22, 23);
             this.button1.TabIndex = 19;
             this.button1.TabStop = false;
             this.button1.Text = "button1";
@@ -343,18 +333,16 @@
             // fromFile_comb
             // 
             this.fromFile_comb.FormattingEnabled = true;
-            this.fromFile_comb.Location = new System.Drawing.Point(276, 24);
-            this.fromFile_comb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.fromFile_comb.Location = new System.Drawing.Point(184, 16);
             this.fromFile_comb.Name = "fromFile_comb";
-            this.fromFile_comb.Size = new System.Drawing.Size(554, 26);
+            this.fromFile_comb.Size = new System.Drawing.Size(371, 20);
             this.fromFile_comb.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(143, 25);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(95, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 17);
             this.label1.TabIndex = 17;
@@ -367,17 +355,16 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 470);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 306);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 21, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(948, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(632, 22);
             this.statusStrip1.TabIndex = 17;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(876, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(567, 17);
             this.toolStripStatusLabel1.Spring = true;
             this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -395,14 +382,13 @@
             // 
             // CopyLog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(948, 492);
+            this.ClientSize = new System.Drawing.Size(632, 328);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "CopyLog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

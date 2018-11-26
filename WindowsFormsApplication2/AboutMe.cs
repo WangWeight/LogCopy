@@ -23,6 +23,7 @@ namespace LogCoooooooopy
             msg.Add("2)增加版本号码显示以及更新内容提示");
             msg.Add("3)将状态栏信息从隐藏显示动画更换为空字符串和字符串显示");
             msg.Add("4)修复新打开软件时不填充备注信息的问题");
+            msg.Add("5)新增测试文件名称是否符合规则方法");
             return string.Join("\n", msg);
         }
     }

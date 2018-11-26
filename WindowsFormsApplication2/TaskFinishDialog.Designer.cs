@@ -32,9 +32,9 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -83,15 +83,15 @@
             this.panel2.Size = new System.Drawing.Size(239, 166);
             this.panel2.TabIndex = 0;
             // 
-            // button3
+            // button5
             // 
-            this.button3.Location = new System.Drawing.Point(20, 14);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(203, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "打开原目录";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button5.Location = new System.Drawing.Point(20, 95);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(203, 23);
+            this.button5.TabIndex = 5;
+            this.button5.Text = "打开目标目录";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button4
             // 
@@ -103,15 +103,15 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button5
+            // button3
             // 
-            this.button5.Location = new System.Drawing.Point(20, 95);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(203, 23);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "打开目标目录";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button3.Location = new System.Drawing.Point(20, 14);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(203, 23);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "打开原目录";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // TaskFinishDialog
             // 
@@ -119,7 +119,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "TaskFinishDialog";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

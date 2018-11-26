@@ -135,6 +135,7 @@
     <EmbeddedResource Include="TaskFinishDialog.resx">
       <DependentUpon>TaskFinishDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">

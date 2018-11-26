@@ -24,6 +24,7 @@ namespace WindowsFormsApplication2
         bool _isControlPressing = false;//当ctrl键按下时点击关闭是真正退出程序
         private string _originTargetDir;//存放原目标字符串，用于为newTarget输入时及时更新targetDir内容
         private bool _isCheckChangedByUser = false;
+        const string TempDirName = "temp";
         class StatusBarObject
         {
             public int time = 0;//time=0：清空状态栏
@@ -170,6 +171,8 @@ namespace WindowsFormsApplication2
         //初始化，包括初始化几个对话框对象，读取配置文件并设置界面值
         private void init()
         {
+            if (!Directory.Exists(TempDirName))
+                Directory.CreateDirectory(TempDirName);
             toolStripStatusLabel2.Text = _about.Version;
             msForm = new MakeSureForm();
             finishForm = new TaskFinishDialog();
@@ -340,7 +343,7 @@ namespace WindowsFormsApplication2
                 + "-" + spot_cmb.Text//测试场地
                 + "-" + fly_item_txt.Text//
                 + "-" + comment_txt.Text 
-                + ".bin";
+                + "."+_config.getTargetExt();
         }
         //复制按钮点击后
         /// <summary>
@@ -369,8 +372,10 @@ namespace WindowsFormsApplication2
             else{
                 try
                 {
-                    File.Create(tf);
-                    File.Delete(tf);
+                    //通过在临时文件夹中建立并删除测试文件名是否可行
+                    string test_file = TempDirName + "//" + _getFinalTargetName();
+                    File.Create(test_file).Close();
+                    File.Delete(test_file);
                     if (!(spot_cmb.DataSource as List<string>).Contains(spot_cmb.Text))
                     {
                         _config.getSpots().Add(spot_cmb.Text);
@@ -392,11 +397,10 @@ namespace WindowsFormsApplication2
                     msForm.FromFile = fromFile_comb.Text;
                     msForm.TargetFile = tf;
                     msForm.ShowDialog();
-
                 }
                 catch (IOException)
                 {
-                    setStatusText("目标文件存在问题");
+                    setStatusText("目标文件名称存在问题");
                 }
             }           
         }       

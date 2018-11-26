@@ -30,6 +30,7 @@ namespace WindowsFormsApplication2
   "LastSpotIndex": 0,
   "IsCreateFolder": true,//取消掉该记录
   "Comment": "buzhis "
+  "TargetExt":"txt"//目标文件拓展名
 }
     */
     class JsonObject
@@ -44,11 +45,13 @@ namespace WindowsFormsApplication2
         public List<string> VehicleNo;//飞机编号
         public bool IsCreateFolder;//是否新建文件夹
         public string Comment;//备注？这里还不确定是否使用list来存储多个备注
+        public string TargetExt;
         public JsonObject()
         {
             VehicleType = new List<string>();
             Spot = new List<string>();
             VehicleNo = new List<string>();
+            TargetExt = "txt";
         }
     }
     class ConfigFile
@@ -194,6 +197,11 @@ namespace WindowsFormsApplication2
         public void setLastSpotIndex(int index)
         {
             _jo.LastSpotIndex = index;
+        }
+
+        public string getTargetExt()
+        {
+            return _jo.TargetExt;
         }
         //用于调试在console中输出对象字符串
         public void print()
